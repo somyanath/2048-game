@@ -1,0 +1,8 @@
+.board-play-area {
+    background-color: #b8afa3;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+}

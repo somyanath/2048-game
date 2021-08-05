@@ -1,0 +1,15 @@
+.board {
+    background-color: #fcf9f1;
+    padding: 20px;
+    color: #77736d;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -60%);
+
+    .board-heading {
+        font-size: 60px;
+        margin: 0;
+        // line-height: 0.6;
+    }
+}

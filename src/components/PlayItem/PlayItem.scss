@@ -1,0 +1,60 @@
+.board-item {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  background-color: #cbc1b6;
+
+  .board-item-content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    font-size: 46px;
+    font-weight: 600;
+    transform: translate(-50%, -50%);
+  }
+
+  .text-dark {
+    color: #786E65;
+  }
+
+  .text-light {
+    color: #F9F6F2;
+  }
+}
+
+.area {
+  background-color: #CDC2B4;
+}
+.area-2 {
+  background-color: #EEE4DA;
+}
+.area-4 {
+  background-color: #EDE0C8;
+}
+.area-8 {
+  background-color: #F2B279;
+}
+.area-16 {
+  background-color: #F39563;
+}
+.area-32 {
+  background-color: #F07C5F;
+}
+.area-64 {
+  background-color: #EF5D39;
+}
+.area-128 {
+  background-color: #EDD072;
+}
+.area-256 {
+  background-color: #EAC95D;
+}
+.area-512 {
+  background-color: #ECD767;
+}
+.area-1024 {
+  background-color: #F2DB60;
+}
+.area-2048 {
+  background-color: #FFE553;
+}
