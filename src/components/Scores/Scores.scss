@@ -1,0 +1,25 @@
+.score-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-gap: 5px;
+}
+
+.score-area {
+    text-align: center;
+    background-color: #BBADA0;
+    padding: 6px 5px 3px 5px;
+    border-radius: 3px;
+    color: #F9F6F2;
+    font-weight: 700;
+
+    .score-title {
+        text-transform: uppercase;
+        font-size: 13px;
+        color: #EEE4DA;
+    }
+
+    .score {
+        font-size: 25px;
+    }
+}
