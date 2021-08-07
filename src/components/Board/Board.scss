@@ -1,18 +1,28 @@
 @import '../../main.scss';
 
 .board {
-    background-color: #fcf9f1;
-    padding: 20px;
-    color: #77736d;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -60%);
+  background-color: #fcf9f1;
+  padding: 20px;
+  color: #77736d;
+  position: relative;
 
-    .board-heading {
-        font-size: 60px;
-        margin: 0;
-        display: inline-block;
-        // line-height: 0.6;
-    }
+  .board-heading {
+    font-size: 60px;
+    margin: 0;
+    display: inline-block;
+  }
+
+  .button {
+    display: inline-block;
+    text-align: center;
+    background-color: #8F7A66;
+    border-radius: 3px;
+    padding: 0 20px;
+    color: #F9F6F2;
+    height: 40px;
+    line-height: 42px;
+    margin-top: 10px;
+    font-weight: 700;
+    cursor: pointer;
+  }
 }

@@ -1,0 +1,25 @@
+.button-container {
+  height: 80px;
+  width: 80px;
+  color: #fcf9f1;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 40px;
+
+  .button {
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    fill: #fcf9f1;
+
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}
