@@ -1,14 +1,14 @@
 @import "../../design-tokens/scss-variables.scss";
 
-.button-container {
+.feature-container {
   height: 80px;
   width: 80px;
-  color: var(--background-secondary);
+  color: var(--text-light);
   font-weight: 700;
   text-align: center;
   margin: 0 $spacer-xl;
 
-  .button {
+  .feature {
     height: 100%;
     width: 100%;
     cursor: pointer;

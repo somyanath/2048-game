@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
-import PlayArea from "../PlayArea/PlayArea";
-import Scores from "../Scores/Scores";
+import Button from "../../templates/Button";
+import PlayArea from "../PlayArea";
+import Scores from "../Scores";
 import "./Board.scss";
 
 const Board = ({ gridData, totalScore, bestScore, onClickNewGame }) => {
@@ -10,9 +11,7 @@ const Board = ({ gridData, totalScore, bestScore, onClickNewGame }) => {
         <h1 className="board-heading">2048</h1>
         <Scores score={totalScore} bestScore={bestScore} />
       </div>
-      <div className="button" onClick={onClickNewGame}>
-        New Game
-      </div>
+      <Button label="New Game" clickHandler={onClickNewGame} />
       <p>
         Join the numbers and get to the <b>2048 tile!</b>
       </p>

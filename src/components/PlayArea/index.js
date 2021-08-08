@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import PlayItem from "../PlayItem/PlayItem";
+import PlayItem from "../PlayItem";
 import "./PlayArea.scss";
 
 const PlayArea = ({ data }) => {
@@ -10,7 +10,6 @@ const PlayArea = ({ data }) => {
           return (
             <PlayItem
               digit={digit}
-              // eslint-disable-next-line react/no-array-index-key
               key={`digit_${index}`}
               textClass={
                 digit === 2 || digit === 4 ? " text-dark" : " text-light"

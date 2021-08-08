@@ -1,10 +1,11 @@
+/* eslint-disable prefer-destructuring */
 import "./App.scss";
 import { useEffect, useState } from "react";
 import { isObjEqual } from "./utils/helpers";
 import useLocalStorage from "./hooks/useLocalStorage";
-import Board from "./components/Board/Board";
-import ExtraFunctions from "./components/ExtraFunctions/ExtraFunctions";
-import MessagePortal from "./components/Message/Message";
+import Board from "./components/Board";
+import ExtraFunctions from "./components/ExtraFunctions";
+import MessagePortal from "./components/Message";
 
 function App() {
   const LEFT_ARROW_CODE = 37;
@@ -53,142 +54,88 @@ function App() {
     setNewGame(false);
   };
 
+  // The logic for moving the numbers in a row/column in the specified direction
+  const move = (newGrid, index, nextIndex, firstAddedNumbers) => {
+    const tempGrid = [...newGrid];
+
+    const list = [
+      tempGrid[index],
+      tempGrid[index + nextIndex],
+      tempGrid[index + nextIndex * 2],
+      tempGrid[index + nextIndex * 3],
+    ];
+
+    const actualNumbersinList = list.filter((num) => num);
+    const missingNumbersLength = 4 - actualNumbersinList.length;
+    const zeroes = Array(missingNumbersLength).fill(0);
+
+    let newList = [];
+    if (firstAddedNumbers) {
+      newList = [...actualNumbersinList, ...zeroes];
+    } else {
+      newList = [...zeroes, ...actualNumbersinList];
+    }
+
+    [
+      tempGrid[index],
+      tempGrid[index + nextIndex],
+      tempGrid[index + nextIndex * 2],
+      tempGrid[index + nextIndex * 3],
+    ] = newList;
+
+    return tempGrid;
+  };
+
+  // Abstracted function for move
+  const abstractedMove = (
+    newGrid,
+    length,
+    nextIndex,
+    firstAddedNumbers,
+    movement
+  ) => {
+    let tempGrid = [...newGrid];
+    for (let index = 0; index < length; index++) {
+      if (movement === "horizontal" && index % 4 === 0) {
+        tempGrid = move(tempGrid, index, nextIndex, firstAddedNumbers);
+      } else if (movement === "vertical") {
+        tempGrid = move(tempGrid, index, nextIndex, firstAddedNumbers);
+      }
+    }
+    return tempGrid;
+  };
+
   // Move Right function
   const moveRight = (tempGrid) => {
     const newGrid = [...tempGrid];
-    for (let index = 0; index < 16; index++) {
-      if (index % 4 === 0) {
-        const firstItem = newGrid[index];
-        const secondItem = newGrid[index + 1];
-        const thirdItem = newGrid[index + 2];
-        const fourthtItem = newGrid[index + 3];
+    const result = abstractedMove(newGrid, 16, 1, false, "horizontal");
 
-        const row = [firstItem, secondItem, thirdItem, fourthtItem];
-
-        const actualNumbersInRow = row.filter((num) => num);
-        const missingNumbersLength = 4 - actualNumbersInRow.length;
-        const zeroes = Array(missingNumbersLength).fill(0);
-        const newRow = [...zeroes, ...actualNumbersInRow];
-
-        [
-          newGrid[index],
-          newGrid[index + 1],
-          newGrid[index + 2],
-          newGrid[index + 3],
-        ] = [newRow[0], newRow[1], newRow[2], newRow[3]];
-      }
-    }
-    return newGrid;
+    return result;
   };
 
   // Move left function
   const moveLeft = (tempGrid) => {
     const newGrid = [...tempGrid];
-    for (let index = 0; index < 16; index++) {
-      if (index % 4 === 0) {
-        const firstItem = newGrid[index];
-        const secondItem = newGrid[index + 1];
-        const thirdItem = newGrid[index + 2];
-        const fourthtItem = newGrid[index + 3];
+    const result = abstractedMove(newGrid, 16, 1, true, "horizontal");
 
-        const row = [firstItem, secondItem, thirdItem, fourthtItem];
-
-        const actualNumbersInRow = row.filter((num) => num);
-        const missingNumbersLength = 4 - actualNumbersInRow.length;
-        const zeroes = Array(missingNumbersLength).fill(0);
-        const newRow = [...actualNumbersInRow, ...zeroes];
-
-        [
-          newGrid[index],
-          newGrid[index + 1],
-          newGrid[index + 2],
-          newGrid[index + 3],
-        ] = [newRow[0], newRow[1], newRow[2], newRow[3]];
-      }
-    }
-    return newGrid;
+    return result;
   };
 
   // Move down function
   const moveDown = (tempGrid) => {
     const newGrid = [...tempGrid];
-    for (let index = 0; index < 4; index++) {
-      const firstItem = newGrid[index];
-      const secondItem = newGrid[index + WIDTH];
-      const thirdItem = newGrid[index + WIDTH * 2];
-      const fourthtItem = newGrid[index + WIDTH * 3];
+    const result = abstractedMove(newGrid, 4, WIDTH, false, "vertical");
 
-      const column = [firstItem, secondItem, thirdItem, fourthtItem];
-
-      const actualNumbersInColumn = column.filter((num) => num);
-      const missingNumbersLength = 4 - actualNumbersInColumn.length;
-      const zeroes = Array(missingNumbersLength).fill(0);
-      const newColumn = [...zeroes, ...actualNumbersInColumn];
-
-      [
-        newGrid[index],
-        newGrid[index + WIDTH],
-        newGrid[index + WIDTH * 2],
-        newGrid[index + WIDTH * 3],
-      ] = [newColumn[0], newColumn[1], newColumn[2], newColumn[3]];
-    }
-    return newGrid;
+    return result;
   };
 
   // Move up function
   const moveUp = (tempGrid) => {
     const newGrid = [...tempGrid];
-    for (let index = 0; index < 4; index++) {
-      const firstItem = newGrid[index];
-      const secondItem = newGrid[index + WIDTH];
-      const thirdItem = newGrid[index + WIDTH * 2];
-      const fourthtItem = newGrid[index + WIDTH * 3];
+    const result = abstractedMove(newGrid, 4, WIDTH, true, "vertical");
 
-      const column = [firstItem, secondItem, thirdItem, fourthtItem];
-
-      const actualNumbersInColumn = column.filter((num) => num);
-      const missingNumbersLength = 4 - actualNumbersInColumn.length;
-      const zeroes = Array(missingNumbersLength).fill(0);
-      const newColumn = [...actualNumbersInColumn, ...zeroes];
-
-      [
-        newGrid[index],
-        newGrid[index + WIDTH],
-        newGrid[index + WIDTH * 2],
-        newGrid[index + WIDTH * 3],
-      ] = [newColumn[0], newColumn[1], newColumn[2], newColumn[3]];
-    }
-    return newGrid;
+    return result;
   };
-
-  // const move = (newGrid, length, nextIndex, firstAddedNumbers) => {
-  //   let tempGrid = [...newGrid];
-  //   for (let index = 0; index < length; index++) {
-  //     let firstItem = tempGrid[index];
-  //     let secondItem = tempGrid[index + nextIndex];
-  //     let thirdItem = tempGrid[index + (nextIndex * 2)];
-  //     let fourthtItem = tempGrid[index + (nextIndex * 3)];
-
-  //     let column = [firstItem, secondItem, thirdItem, fourthtItem];
-
-  //     let actualNumbersInColumn = column.filter(num => num);
-  //     let missingNumbersLength = 4 - actualNumbersInColumn.length;
-  //     let zeroes = Array(missingNumbersLength).fill(0);
-
-  //     let newColumn = [];
-  //     if(firstAddedNumbers) {
-  //       newColumn = [...actualNumbersInColumn,...zeroes];
-  //     } else {
-  //       newColumn = [...zeroes,...actualNumbersInColumn];
-  //     }
-
-  //     tempGrid[index] = newColumn[0];
-  //     tempGrid[index + nextIndex] = newColumn[1];
-  //     tempGrid[index + (nextIndex * 2)] = newColumn[2];
-  //     tempGrid[index + (nextIndex * 3)] = newColumn[3];
-  //   }
-  //   return tempGrid;
-  // }
 
   // function to add numbers and replace the values in the paricular index
   const addReplace = (newGrid, index, nextIndex, addition) => {
@@ -212,7 +159,8 @@ function App() {
     endIndex,
     nextIndex,
     extraCheck = false,
-    movement
+    movement,
+    pseudoRun
   ) => {
     let tempGrid = [...newGrid];
     let moveTotal = 0;
@@ -239,31 +187,31 @@ function App() {
         }
       }
     }
-    if (moveTotal) {
+    if (moveTotal && !isObjEqual(tempGrid, newGrid) && !pseudoRun) {
       setTotalScore((prevTotal) => prevTotal + moveTotal);
     }
     return tempGrid;
   };
 
   // Function to add row numbers after moving
-  const addRowNumbers = (tempGrid, movement) => {
+  const addRowNumbers = (tempGrid, movement, pseudoRun) => {
     let newGrid = [];
     if (movement === "left") {
-      newGrid = addNumbers(tempGrid, 0, 15, 1, true, "left");
+      newGrid = addNumbers(tempGrid, 0, 15, 1, true, "left", pseudoRun);
     } else if (movement === "right") {
-      newGrid = addNumbers(tempGrid, 15, 0, 1, true, "right");
+      newGrid = addNumbers(tempGrid, 15, 0, 1, true, "right", pseudoRun);
     }
 
     return newGrid;
   };
 
   // Function to add column numbers after moving
-  const addColumnNumbers = (tempGrid, movement) => {
+  const addColumnNumbers = (tempGrid, movement, pseudoRun) => {
     let newGrid = [];
     if (movement === "up") {
-      newGrid = addNumbers(tempGrid, 0, 12, WIDTH, false, "up");
+      newGrid = addNumbers(tempGrid, 0, 12, WIDTH, false, "up", pseudoRun);
     } else if (movement === "down") {
-      newGrid = addNumbers(tempGrid, 15, 3, WIDTH, false, "down");
+      newGrid = addNumbers(tempGrid, 15, 3, WIDTH, false, "down", pseudoRun);
     }
 
     return newGrid;
@@ -282,7 +230,7 @@ function App() {
 
     const oldGrid = [...gridData];
     let tempGrid = moveCbFn([...gridData]);
-    tempGrid = addCbFn(tempGrid, movement);
+    tempGrid = addCbFn(tempGrid, movement, pseudoRun);
     tempGrid = moveCbFn(tempGrid);
 
     // Now we are checking for change in array,
@@ -303,8 +251,9 @@ function App() {
       if (undoMoves.length) {
         setUndoMoves([]);
       }
-      // eslint-disable-next-line no-use-before-define
-    } else if (!tempGrid.includes(0) && !pseudoRun && checkGameOver(tempGrid)) {
+    }
+    // eslint-disable-next-line no-use-before-define
+    if (!tempGrid.includes(0) && !pseudoRun && checkGameOver(tempGrid)) {
       setStatus({ visible: true, message: "Game Over!" });
     }
 
@@ -336,7 +285,8 @@ function App() {
   };
 
   // Check game over function
-  const checkGameOver = (tempGrid) => {
+  const checkGameOver = (newGrid) => {
+    const tempGrid = [...newGrid];
     if (!isObjEqual(tempGrid, keyUp(true))) {
       return false;
     }
@@ -471,10 +421,16 @@ function App() {
       {status.visible && (
         <MessagePortal
           message={status.message}
-          onClickOk={onClickOk}
-          onClickTry={onClickTry}
-          labelOk="OK"
-          labelTry={isWon ? "NEW GAME" : "TRY AGAIN"}
+          buttons={[
+            {
+              label: "OK",
+              clickHandler: onClickOk,
+            },
+            {
+              label: `${isWon ? "NEW GAME" : "TRY AGAIN"}`,
+              clickHandler: onClickTry,
+            },
+          ]}
         />
       )}
     </div>

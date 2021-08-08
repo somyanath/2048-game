@@ -14,23 +14,23 @@ const ExtraFunctions = ({
 }) => {
   return (
     <div className="row">
-      <div className={`button-container ${undoDisabled ? "disabled" : ""}`}>
+      <div className={`feature-container ${undoDisabled ? "disabled" : ""}`}>
         <Undo
-          className={`button ${undoDisabled ? "disabled" : ""}`}
+          className={`feature ${undoDisabled ? "disabled" : ""}`}
           onClick={!undoDisabled ? onClickUndo : null}
         />
         Undo
       </div>
-      <div className={`button-container ${replayDisabled ? "disabled" : ""}`}>
+      <div className={`feature-container ${replayDisabled ? "disabled" : ""}`}>
         <Replay
-          className={`button ${replayDisabled ? "disabled" : ""}`}
+          className={`feature ${replayDisabled ? "disabled" : ""}`}
           onClick={!replayDisabled ? onClickReplay : null}
         />
         Replay
       </div>
-      <div className={`button-container ${redoDisabled ? "disabled" : ""}`}>
+      <div className={`feature-container ${redoDisabled ? "disabled" : ""}`}>
         <Redo
-          className={`button ${redoDisabled ? "disabled" : ""}`}
+          className={`feature ${redoDisabled ? "disabled" : ""}`}
           onClick={!redoDisabled ? onClickRedo : null}
         />
         Redo

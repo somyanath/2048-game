@@ -1,0 +1,15 @@
+@import "../../design-tokens/scss-variables";
+
+.button {
+  display: inline-block;
+  text-align: center;
+  background-color: var(--button-bg-color);
+  border-radius: 3px;
+  padding: 0 $spacer-l;
+  color: var(--text-light);
+  height: 40px;
+  line-height: 42px;
+  font-weight: 700;
+  cursor: pointer;
+  // margin-left: 9px;
+}
