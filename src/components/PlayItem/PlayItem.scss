@@ -8,53 +8,53 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    font-size: 46px;
+    font-size: 40px;
     font-weight: 600;
     transform: translate(-50%, -50%);
   }
 
   .text-dark {
-    color: #786E65;
+    color: var(--text-secondary);
   }
 
   .text-light {
-    color: #F9F6F2;
+    color: var(--text-light);
   }
 }
 
 .area {
-  background-color: #CDC2B4;
+  background-color: var(--default-area);
 }
 .area-2 {
-  background-color: #EEE4DA;
+  background-color: var(--area-2);
 }
 .area-4 {
-  background-color: #EDE0C8;
+  background-color: var(--area-4);
 }
 .area-8 {
-  background-color: #F2B279;
+  background-color: var(--area-8);
 }
 .area-16 {
-  background-color: #F39563;
+  background-color: var(--area-16);
 }
 .area-32 {
-  background-color: #F07C5F;
+  background-color: var(--area-32);
 }
 .area-64 {
-  background-color: #EF5D39;
+  background-color: var(--area-64);
 }
 .area-128 {
-  background-color: #EDD072;
+  background-color: var(--area-128);
 }
 .area-256 {
-  background-color: #EAC95D;
+  background-color: var(--area-256);
 }
 .area-512 {
-  background-color: #ECD767;
+  background-color: var(--area-512);
 }
 .area-1024 {
-  background-color: #F2DB60;
+  background-color: var(--area-1024);
 }
 .area-2048 {
-  background-color: #FFE553;
+  background-color: var(--area-2048);
 }

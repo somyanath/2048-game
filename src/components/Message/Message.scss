@@ -1,3 +1,5 @@
+@import "../../design-tokens/scss-variables.scss";
+
 .message-container {
   position: absolute;
   top: 0%;
@@ -6,10 +8,10 @@
   bottom: 0%;
   padding: 10px;
   text-align: center;
-  background-color: rgba(238,228,218,.5);
+  background-color: rgba(238, 228, 218, 0.5);
 
   .message {
-    color: #77736D;
+    color: var(--text-primary);
     font-size: 50px;
     font-weight: 700;
   }
@@ -17,10 +19,10 @@
   .button {
     display: inline-block;
     text-align: center;
-    background-color: #8F7A66;
+    background-color: var(--button-bg-color);
     border-radius: 3px;
-    padding: 0 20px;
-    color: #F9F6F2;
+    padding: 0 $spacer-l;
+    color: var(--text-light);
     height: 40px;
     line-height: 42px;
     margin-left: 9px;

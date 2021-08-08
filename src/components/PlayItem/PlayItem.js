@@ -1,12 +1,20 @@
-import React from 'react'
-import './PlayItem.scss'
+import PropTypes from "prop-types";
+import "./PlayItem.scss";
 
 const PlayItem = ({ digit, textClass, areaClass }) => {
   return (
-    <div className={`board-item${areaClass ? areaClass : ''}`}>
-      <span className={`board-item-content${textClass ? textClass : ''}`}>{digit ? digit : ''}</span>
+    <div className={`board-item${areaClass || ""}`}>
+      <span className={`board-item-content${textClass || ""}`}>
+        {digit || ""}
+      </span>
     </div>
-  )
-}
+  );
+};
 
-export default PlayItem
+PlayItem.propTypes = {
+  digit: PropTypes.number.isRequired,
+  textClass: PropTypes.string.isRequired,
+  areaClass: PropTypes.string.isRequired,
+};
+
+export default PlayItem;

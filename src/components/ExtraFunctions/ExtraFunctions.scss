@@ -1,16 +1,18 @@
+@import "../../design-tokens/scss-variables.scss";
+
 .button-container {
   height: 80px;
   width: 80px;
-  color: #fcf9f1;
+  color: var(--background-secondary);
   font-weight: 700;
   text-align: center;
-  margin: 0 40px;
+  margin: 0 $spacer-xl;
 
   .button {
     height: 100%;
     width: 100%;
     cursor: pointer;
-    fill: #fcf9f1;
+    fill: var(--background-secondary);
 
     &.disabled {
       opacity: 0.5;

@@ -1,5 +1,5 @@
-import React from 'react'
-import './Scores.scss'
+import PropTypes from "prop-types";
+import "./Scores.scss";
 
 const Scores = ({ score, bestScore }) => {
   return (
@@ -13,7 +13,12 @@ const Scores = ({ score, bestScore }) => {
         <div className="score">{bestScore}</div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Scores
+Scores.propTypes = {
+  score: PropTypes.number.isRequired,
+  bestScore: PropTypes.number.isRequired,
+};
+
+export default Scores;

@@ -1,10 +1,12 @@
+@import "../../design-tokens/scss-variables.scss";
+
 .board-play-area {
-  background-color: #BBADA0;
+  background-color: var(--background-primary);
   border-radius: 3px;
-  padding: 10px;
+  padding: $spacer-s;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
-  grid-gap: 10px;
+  grid-gap: $spacer-s;
   position: relative;
 }
