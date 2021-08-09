@@ -1,3 +1,13 @@
+# 2048 Game
+
+This is a 2048 game inspired by the one created by [Gabriele Cirulli](https://2048game.com).
+
+This version have extra features like `UNDO`, `REPLAY`, and `REDO`.
+
+This version does not have the smooth animations like that of the original game, but you have the above extra features helping you to achieve that high score!!
+
+You can check the live version of this game [here](https://somyanath.github.io/2048-game).
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
