@@ -8,10 +8,6 @@ This version does not have the smooth animations like that of the original game,
 
 You can check the live version of this game [here](https://somyanath.github.io/2048-game).
 
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Available Scripts
 
 In the project directory, you can run:
